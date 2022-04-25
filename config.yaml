@@ -1,0 +1,31 @@
+seed: 42  # Random seed for reproducibility
+num_epochs: 5
+learning_rate: 0.00002
+experiment_name: bertDA # Experiment name to save in the logger
+do_train: true
+do_eval: true  # Evaluate on dev set at the end of every epoch
+result_dir: ./results
+use_cuda: False
+num_domains: 4
+data_args:
+  dev_frac: 0.2  # Fraction of train set to set aside for dev
+  train_folder: ./data/train
+  dev_folder: ./data/dev
+  in_dom_dev_folder: ./data/dev
+  dataset_checkpoint: ./pckl_data  # Path to datasets checkpoint to load from
+  to_checkpoint: ./pckl_data  # Path to save datasets to
+  max_seq_length: 256
+  max_ques_length: 64
+  batch_size: 8
+  doc_stride: 64
+  shuffle: True
+  eval_batch_size: 32 # Batch size for evaluation
+model_checkpoint_folder: ./models
+model_args:
+  base_model_args:
+    name: "bert-base-uncased-squad"
+  dann_model_args:
+    num_freezed_layers: 3 #this didn't help
+    model_checkpoint_folder: ./models
+  experts:
+    folder: ./models
