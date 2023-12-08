@@ -1,3 +1,5 @@
+Check acl_paper.pdf
+
 In order to reproduce the experiment you should run main.py with the model name
 
 To run our model BertQA with domain-adversarial :
